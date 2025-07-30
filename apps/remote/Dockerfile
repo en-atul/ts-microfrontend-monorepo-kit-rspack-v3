@@ -30,11 +30,11 @@ FROM nginx:1.25-alpine
 # Copy built application
 COPY --from=builder /app/apps/remote/dist /usr/share/nginx/html
 
-# Copy nginx configuration (server block only)
+# Copy nginx configuration
 COPY apps/remote/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Remove any other default configs that might conflict
-RUN rm -f /etc/nginx/conf.d/default.conf.bak /etc/nginx/conf.d/default.conf.template 2>/dev/null || true
+# RUN rm -f /etc/nginx/conf.d/default.conf.bak /etc/nginx/conf.d/default.conf.template 2>/dev/null || true
 
 # Expose port
 EXPOSE 80
